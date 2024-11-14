@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header_rfc %}
+    <link rel="stylesheet" href="{% static 'blog/index.css' %}">
+{% endblock %}
+{% block title %}
+    My Blog
+{% endblock %}
+
+
+{% block content %}
+
+    <section id="welcome">
+        <header>
+            <img src="{% static 'blog/images/master.jpg' %}" alt="Ibrahim - Author of this blog">
+            <h2>Toplearn blog project</h2>
+            <p>
+                Hi, I am Ibrahim Sadiqi python developer
+            </p>
+        </header>
+    </section>
+
+    <section id="latest-posts">
+        <h2>Latest Posts</h2>
+        <ul>
+            {% for post in posts %}
+                {% include 'blog/includes/post.html' %}
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section id="about">
+        <h2>What I Do</h2>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolor dolorem ducimus est eum ipsa iste iusto
+            magni neque nihil omnis, possimus quae, qui, quisquam quos ratione repudiandae tempore tenetur.
+
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet excepturi in maiores officiis reprehenderit
+            sapiente unde. Animi architecto cum delectus deleniti eum, illo, ipsum iste, quidem quis quod recusandae
+            vero! Aliquam, aperiam assumenda beatae consequatur consequuntur cupiditate dolor dolores ducimus eius et
+            excepturi fugiat incidunt iure libero minus molestiae omnis quasi quo rem rerum sed tempora temporibus, vero
+            voluptate, voluptates!
+
+        </p>
+    </section>
+{% endblock %}
