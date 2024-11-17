@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from datetime import timedelta
+from datetime import date
 from django.urls import reverse
 
 all_posts = [
@@ -8,7 +8,7 @@ all_posts = [
         'title': 'Django Course',
         'author': 'Ibrahim Sadiqi',
         'image': 'django.png',
-        'date': timedelta(),
+        'date': date(2024,11,17),
         'short_description': 'This is django course from beginner to advance',
         'content': """
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda at atque consequatur
@@ -22,9 +22,17 @@ all_posts = [
         'title': 'Python Course',
         'author': 'Ibrahim Sadiqi',
         'image': 'python.png',
-        'date': timedelta(),
+        'date': date(2024,11,17),
         'short_description': 'This is python course from beginner to advance',
         'content': """
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda at atque consequatur
+        doloremque dolores doloribus, eaque esse excepturi facilis fugiat itaque laboriosam laudantium
+        magnam natus nobis optio possimus praesentium quod rem repellat sapiente sequi sit sunt suscipit
+        vitae voluptatum.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda at atque consequatur
+        doloremque dolores doloribus, eaque esse excepturi facilis fugiat itaque laboriosam laudantium
+        magnam natus nobis optio possimus praesentium quod rem repellat sapiente sequi sit sunt suscipit
+        vitae voluptatum.
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda at atque consequatur
         doloremque dolores doloribus, eaque esse excepturi facilis fugiat itaque laboriosam laudantium
         magnam natus nobis optio possimus praesentium quod rem repellat sapiente sequi sit sunt suscipit
@@ -36,7 +44,7 @@ all_posts = [
         'title': 'Machine Learning Course',
         'author': 'Ibrahim Sadiqi',
         'image': 'ml.png',
-        'date': timedelta(),
+        'date': date(2024,11,17),
         'short_description': 'This is machine learning course from beginner to advance',
         'content': """
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda at atque consequatur
@@ -54,13 +62,17 @@ def get_date(post):
 
 def index(request):
     sorted_post = sorted(all_posts, key=get_date)
-    latest_posts = sorted_post[-3:]
+    latest_posts = sorted_post[-2:]
     return render(request, 'blog/index.html', {'posts': latest_posts})
 
 
 def posts(request):
-    return render(request, 'blog/all_posts.html')
+    context = {
+        'posts': all_posts
+    }
+    return render(request, 'blog/all_posts.html', context)
 
 
 def single_post(request, slug):
-    return render(request, 'blog/post-detail.html')
+    post = next(post for post in all_posts if post['slug'] == slug)
+    return render(request, 'blog/post-detail.html', {'post': post})

@@ -10,10 +10,11 @@
     <section id="all-posts">
         <h2>This is all posts</h2>
         <ui>
-            {% include 'blog/includes/post.html' %}
-            {% include 'blog/includes/post.html' %}
-            {% include 'blog/includes/post.html' %}
-            {% include 'blog/includes/post.html' %}
+            {% for post in posts %}
+                {% include 'blog/includes/post.html' %}
+            {% endfor %}
+
+
         </ui>
     </section>
 {% endblock %}

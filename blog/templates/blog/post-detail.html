@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    Title of the post
+    {{ post.title | title }}
 {% endblock %}
 
 {% block header_rfc %}
@@ -14,32 +14,18 @@
 
 {% block content %}
     <section id="summary">
-        <h2>Post Title</h2>
+        <h2>{{ post.titlel }}</h2>
         <article>
-            <img src="{% static 'blog/images/django.png' %}" alt="Post iamge alt">
-            <address>By Toplearn</address>
+            <img src="{% static 'blog/images/'|add:post.image %}" alt="Post iamge alt">
+            <address>By {{ post.author }}</address>
             <div>
                 Last Updated on
-                <time>July 20th</time>
+                <time>{{ post.date | date:'d M Y' }}</time>
             </div>
         </article>
     </section>
 
     <main>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aliquid dolor ea magnam necessitatibus neque?
-            Cum debitis dicta esse eum iste laboriosam magnam maiores nemo, nesciunt placeat porro suscipit tempora
-            ullam. Sit totam, voluptatibus! Cupiditate error maiores provident sequi suscipit.
-        </p>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aliquid dolor ea magnam necessitatibus neque?
-            Cum debitis dicta esse eum iste laboriosam magnam maiores nemo, nesciunt placeat porro suscipit tempora
-            ullam. Sit totam, voluptatibus! Cupiditate error maiores provident sequi suscipit.
-        </p>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aliquid dolor ea magnam necessitatibus neque?
-            Cum debitis dicta esse eum iste laboriosam magnam maiores nemo, nesciunt placeat porro suscipit tempora
-            ullam. Sit totam, voluptatibus! Cupiditate error maiores provident sequi suscipit.
-        </p>
+       {{ post.content | linebreaks }}
     </main>
 {% endblock %}
